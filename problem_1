@@ -1,12 +1,15 @@
-(define (maxElement li)(apply max li))
+
+(define (maxElement li)
+  (if(not (real? li))
+     (apply max li)
+     )
+)
 
 (define (elementAtIndex li index) (list-ref li (- index 1)))
 
-(define (compress li)
-  
-  ( forcompress 1 (list) li)
+(define (compress li) 
+  (reverse(forcompress 1 (list (car li)) li))
 )
-
 (define (forcompress index compLi li)
   (if(<= index (length li))
      (        
@@ -15,17 +18,38 @@
      compLi
   )
 )
-
 (define (addIfNotIn li item)
-  (if (not(checkList li item))
+  (if (checkList li item)
       (cons item li)
+      li
   )
 )
 (define (checkList li item)
-  (eqv? "a" "a")
+  (if(not(null? li))(
+   if(eqv? (car li) item)
+     (= 1 2)
+     (checkList (cdr li) item)))
 )
 
-(define (maxofmax x) (car x))
+(define (maxofmax li) 
+  (maxElement (maxofmax! li (list)))
+)
+(define (maxofmax! li max)
+  (
+   if(not(null? li))
+     (
+      maxofmax! (cdr li) (cons (checkNested (car li)) max)
+     )
+     max
+  )
+)
+(define (checkNested li)
+  (if  (real? li)(
+      maxElement li
+    )
+     (display 5)
+  )
+)
 
 (define (split x) (car x))
 
@@ -44,7 +68,8 @@
 
 (define (len li) (for li 4 (ll)))
 (define (ll)(list ' 1 2 3 10 5 6 7 ))
-(define (testC)(compress '(a a a b b c c c d d d d e f f))) 
-
+(define (tA)(maxElement '(5 3 7 2 6 1 4)))
+(define (tC)(compress '(a a d a b b c c a c d d d d e f f))) 
+(define (tD)(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 (4 4) 5 6 1)))) 
 (define (foo) (append (ll) (list '10 22 33)))
-(define (t) (testC))
+(define (t) (testD))
