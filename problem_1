@@ -3,21 +3,33 @@
 (define (elementAtIndex li index) (list-ref li (- index 1)))
 
 (define (compress li)
-  ( forcompress 1 (car li) li)
+  
+  ( forcompress 1 (list) li)
+)
+
+(define (forcompress index compLi li)
+  (if(<= index (length li))
+     (        
+        forcompress (+ index 1) (addIfNotIn compLi (elementAtIndex li index)) li
+     )
+     compLi
+  )
+)
+
+(define (addIfNotIn li item)
+  (if (not(checkList li item))
+      (cons item li)
+  )
+)
+(define (checkList li item)
+  (eqv? "a" "a")
 )
 
 (define (maxofmax x) (car x))
 
 (define (split x) (car x))
 
-(define (forcompress index compre li)
-  (if(<= index (length li))
-     (        
-        forcompress (+ index 1) compre li
-     )
-     compre
-  )
-)
+
 
 (define (for index max li)
   (if(<= index (length li))
@@ -35,3 +47,4 @@
 (define (testC)(compress '(a a a b b c c c d d d d e f f))) 
 
 (define (foo) (append (ll) (list '10 22 33)))
+(define (t) (testC))
