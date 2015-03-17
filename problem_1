@@ -1,0 +1,9 @@
+(define (maxElement x)(car x))
+
+(define (elementAtIndex x) (car x))
+
+(define (compress x)( car x))
+
+(define (maxofmax x) (car x))
+
+(define (split x) (car x))
