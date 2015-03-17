@@ -1,9 +1,13 @@
 (define (maxElement x)(car x))
 
-(define (elementAtIndex x) (car x))
+(define (elementAtIndex li index) (list-ref li (- index 1)))
 
 (define (compress x)( car x))
 
 (define (maxofmax x) (car x))
 
 (define (split x) (car x))
+
+(define (foo li index)(list-ref li index))
+
+"(define (l (foo ' (1 2 3 4 5 6) 1)))"
