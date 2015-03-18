@@ -51,7 +51,13 @@
        (split! (cdr li) (- no 1) (cons (car li) one) two)
        (split! (cdr li) (- no 1) one (cons (car li) two))
      )
-     (list(reverse one) (reverse two))
+     (if (null? one)
+         (list (reverse two))
+         (if (null? two)
+             (list(reverse one))
+             (list(reverse one) (reverse two)))
+      
+     )
    )
 )
 
@@ -73,4 +79,5 @@
 (define (tB)(elementAtIndex '(a b c d e f) 4))
 (define (tC)(compress '(a a d a b b c c a c d d d d e f f))) 
 (define (tD)(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 4 4 5 6 1)))) 
-(define (tE)(split '(a b c d e f g) 3)) 
+(define (tE)(split '(a b c d e f g) 4)) 
+(define (t)(te))
