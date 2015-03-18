@@ -1,9 +1,5 @@
 
-(define (maxElement li)
-  (if(not (real? li))
-     (apply max li)
-     )
-)
+(define (maxElement li)(apply max li))
 
 (define (elementAtIndex li index) (list-ref li (- index 1)))
 
@@ -44,14 +40,20 @@
   )
 )
 (define (checkNested li)
-  (if  (real? li)(
-      maxElement li
-    )
-     (display 5)
-  )
+  (maxElement li)
 )
 
-(define (split x) (car x))
+(define (split li no) (split! li no (list) (list)))
+(define (split! li no one two)
+  (
+     if(not (null? li))(
+       if(< 0 no)
+       (split! (cdr li) (- no 1) (cons (car li) one) two)
+       (split! (cdr li) (- no 1) one (cons (car li) two))
+     )
+     (list(reverse one) (reverse two))
+   )
+)
 
 
 
@@ -66,10 +68,9 @@
 )
 
 
-(define (len li) (for li 4 (ll)))
 (define (ll)(list ' 1 2 3 10 5 6 7 ))
 (define (tA)(maxElement '(5 3 7 2 6 1 4)))
+(define (tB)(elementAtIndex '(a b c d e f) 4))
 (define (tC)(compress '(a a d a b b c c a c d d d d e f f))) 
-(define (tD)(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 (4 4) 5 6 1)))) 
-(define (foo) (append (ll) (list '10 22 33)))
-(define (t) (testD))
+(define (tD)(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 4 4 5 6 1)))) 
+(define (tE)(split '(a b c d e f g) 3)) 
