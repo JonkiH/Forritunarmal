@@ -11,21 +11,9 @@
          (else (cons (car lis) (compress (cdr lis)))))))
 
 
-(define (maxofmax li) 
-  (maxElement (maxofmax! li (list)))
-)
-(define (maxofmax! li max)
-  (
-   if(not(null? li))
-     (
-      maxofmax! (cdr li) (cons (checkNested (car li)) max)
-     )
-     max
-  )
-)
-(define (checkNested li)
-  (maxElement li)
-)
+(define maxofmax (lambda(lis)
+  (maxElement (map maxElement lis))))
+
 
 (define (split li no) (split! li no (list) (list)))
 (define (split! li no one two)
@@ -65,4 +53,4 @@
 (define (tD)(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 4 4 5 6 1)))) 
 (define (tE)(split '(a b c d e f g) 4)) 
 (define (tt)(elementAtIndex (compress '(a a a b b c c c d d d d e f f))4))
-(define (t)(tc))
+(define (t)(td))
