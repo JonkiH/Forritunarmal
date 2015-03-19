@@ -14,36 +14,28 @@
 (define maxofmax (lambda(lis)
   (maxElement (map maxElement lis))))
 
+(define split# (lambda(lis no)
+  (cond ((null? lis) '())
+         ((< 0 no)
+          (begin
+           (display (car no lis))
+           (cons (car lis) (split (cdr lis) (- no 1)))
+           ))
+          (else  (cons lis (list))))
+        ))
+   
 
 (define (split li no) (split! li no (list) (list)))
-(define (split! li no one two)
-  (
-     if(not (null? li))(
-       if(< 0 no)
-       (split! (cdr li) (- no 1) (cons (car li) one) two)
-       (split! (cdr li) (- no 1) one (cons (car li) two))
-     )
-     (if (null? one)
-         (list (reverse two))
-         (if (null? two)
-             (list(reverse one))
-             (list(reverse one) (reverse two)))
-      
-     )
-   )
-)
+(define split! (lambda (lis no one two)
+    (cond ((and (null? lis) (null? one) (null? two))
+           (list '() '()))     
+        ((< 1 no)
+         (split! (cdr lis) (- no 1) (cons (car lis) one) two))
+        ((= 0 no)
+         (list one lis))
+        (else
+         (list (reverse (cons (car lis) one)) (cdr lis))))))
 
-
-
-(define (for index max li)
-  (if(<= index (length li))
-     (
-        
-        for (+ index 1) max li
-     )
-     max
-  )
-)
 
 
 (define (ll)(list ' 1 2 3 10 5 6 7 ))
@@ -51,6 +43,6 @@
 (define (tB)(elementAtIndex '(a b c d e f) 4))
 (define (tC)(compress '(a a a b b c c c d d d d e f f))) 
 (define (tD)(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 4 4 5 6 1)))) 
-(define (tE)(split '(a b c d e f g) 4)) 
+(define (tE)(split '() 1)) 
 (define (tt)(elementAtIndex (compress '(a a a b b c c c d d d d e f f))4))
-(define (t)(td))
+(define (t)(te))
