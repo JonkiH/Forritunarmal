@@ -14,9 +14,13 @@
        (cond ((null? lis)'())
              (else (cons (length(car lis)) (wordsPerSentence (cdr lis)))))))
 
+(define statsDocument (lambda (lis)
+       (cond ((null? lis)'(0 0 0))
+             (else (list (sumList(charactersPerSentence lis)) (sumList(wordsPerSentence  lis)) (length lis))))))
 
 (define (testA)(sumList ' (1)))
 (define (testB)(charactersPerWord ' (Scheme is so wonderful)))
 (define (testC)(charactersPerSentence '((Hello Mary) (Scheme is so wonderful) (See you later) (John))))
 (define (testD)(wordsPerSentence '((Hello Mary) (Scheme is so wonderful) (See you later) (John))))
-(define (t)(testD))
+(define (testE)(statsDocument '((Hello Mary) (Scheme is so wonderful) (See you later) (John))))
+(define (t)(testE))
