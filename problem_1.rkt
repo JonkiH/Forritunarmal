@@ -3,18 +3,12 @@
 
 (define (elementAtIndex li index) (list-ref li (- index 1)))
 
-(define (compress lis) 
-  (if(not (null? lis))
-     (if(not (null? (cdr lis)))
-        (if(eqv? (car lis) (car (cdr lis)))
-          (compress (cdr lis)) 
-          (cons (car lis) (compress (cdr lis)) )
-        )
-        lis
-     )
-   )
-)
-
+(define compress (lambda(lis)
+  (cond ((null? lis)'())
+        ((null? (cdr lis)) lis)
+        ((eq? (car lis) (cadr lis))
+         (compress (cdr lis)))
+         (else (cons (car lis) (compress (cdr lis)))))))
 
 
 (define (maxofmax li) 
@@ -70,4 +64,5 @@
 (define (tC)(compress '(a a a b b c c c d d d d e f f))) 
 (define (tD)(maxofmax '((5 3 6 2) (1 6 2 7) (7 3 8 2 9) (6 2 4 4 5 6 1)))) 
 (define (tE)(split '(a b c d e f g) 4)) 
+(define (tt)(elementAtIndex (compress '(a a a b b c c c d d d d e f f))4))
 (define (t)(tc))
