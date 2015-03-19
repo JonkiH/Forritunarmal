@@ -13,16 +13,6 @@
 
 (define maxofmax (lambda(lis)
   (maxElement (map maxElement lis))))
-
-(define split# (lambda(lis no)
-  (cond ((null? lis) '())
-         ((< 0 no)
-          (begin
-           (display (car no lis))
-           (cons (car lis) (split (cdr lis) (- no 1)))
-           ))
-          (else  (cons lis (list))))
-        ))
    
 
 (define (split li no) (split! li no (list) (list)))
