@@ -17,3 +17,18 @@ fun reduction y [] = 0
 		reduction y bt
 	end;
   
+fun partition look li = 
+let
+	fun loop (look, li as x::xt, yes, no) = 
+		if look x then (loop (look, xt, (yes@[x]),no)) 
+		else (loop (look, xt, yes, (no@[x])))
+	|	loop (look, [], [], []) = []
+	|	loop (look, [], yes, no) = 
+		let val li = (yes,no)
+		in [li]
+		end	
+in
+	loop (look, li, [], [])
+end;
+
+partition Char.isLower [#"P",#"a",#"3",#"%",#"b"];
