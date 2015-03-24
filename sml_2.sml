@@ -15,3 +15,14 @@ let
 in
 	loop (lis, [])
 end;
+
+fun middle lis = 
+let
+	fun loop ([x], pos, size) = x
+	|	loop (x::xt, pos, size) = 
+		if pos >= size then x else
+		loop (xt, pos + 1, size - 1)
+in
+	loop (lis, 1, (length lis))
+end;
+
