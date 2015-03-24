@@ -8,8 +8,12 @@ fun greaterThan [] y = []
 	greaterThan (tl x) y;
 
 fun reduction y [] = 0
-|  	reduction y x = 
-	if null(tl x ) then hd x else
-	op y (hd(x), reduction y (tl x));
-
- 
+|  	reduction y (x::xt) = 
+	if null(xt) then x else
+	if null(tl xt) then op y (x, (hd(xt))) else
+	let 
+		val bt = [op y (x, hd(xt))]@(tl xt);
+	in
+		reduction y bt
+	end;
+  
